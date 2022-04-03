@@ -3,7 +3,13 @@ package com.canteenvisit.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.time.LocalDate;
 
 @Getter
@@ -25,7 +31,6 @@ public class Student {
     @SequenceGenerator(name = "studentIdSeq", sequenceName = "students_student_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "studentIdSeq")
     private Integer studentId;
-
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "second_name")
@@ -45,26 +50,6 @@ public class Student {
     @Column(name = "social_help_before")
     private LocalDate socialHelpBefore;
 
-    @Override
-    public boolean equals(Object obj) {
-        // сравнивает текущий экземпляр объекта this с переданным объектом
-        // если это один и тот же объект, то вернет true
-        if (this == obj) {
-            return true;
-        }
-        // является ли переданный объекта null и какой у него тип
-        // если переданный объект другого типа, то объекты не равны
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        // сравнивает поля объектов
-        // если два объекта имеют одинаковые значения полей "Имя, Фамилия, Отчество"
-        // то объекты совпадают
-        final Student other = (Student) obj;
-        return firstName.equals(other.firstName) &&
-                secondName.equals(other.secondName) &&
-                middleName.equals(other.middleName);
-    }
 
     @Override
     public String toString() {

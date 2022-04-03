@@ -1,11 +1,18 @@
 package com.canteenvisit.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.IdClass;
+import javax.persistence.Id;
+import javax.persistence.Column;
+
 
 @Getter
 @Setter
@@ -15,18 +22,14 @@ import java.time.LocalDate;
 @Table(name="visits")
 // след строка позволяет избавиться от ошибки ленивой инициализации Hibernate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@IdClass(Visit.VisitPK.class)
 public class Visit {
     // @Id id колонки
     @Id
     // @Column указывает на имя колонки, которая отображается в свойство сущности
     @Column(name = "student_id")
-    // @GeneratedValue — указывает, что данное свойство будет создаваться согласно указанной стратегии
-    // тип стратегии, подходящей для PostgresSQL или Oracle - SEQUENCE
-    // тип стратегии, подходящий для MySQL или DB2 - IDENTITY
-    @SequenceGenerator(name = "studentIdSeq", sequenceName = "visits_student_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "studentIdSeq")
     private Integer studentId;
-
+    @Id
     @Column(name = "date_of_meals")
     private LocalDate dateOfMeals;
     @Column(name = "ate_food")
@@ -36,25 +39,6 @@ public class Visit {
     @Column(name = "last_update")
     private LocalDate lastUpdate;
 
-    @Override
-    public boolean equals(Object obj) {
-        // сравнивает текущий экземпляр объекта this с переданным объектом
-        // если это один и тот же объект, то вернет true
-        if (this == obj) {
-            return true;
-        }
-        // является ли переданный объекта null и какой у него тип
-        // если переданный объект другого типа, то объекты не равны
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        // сравнивает поля объектов
-        // если два объекта имеют одинаковые значения полей "ID и дата приема пищи"
-        // то объекты совпадают
-        final Visit other = (Visit) obj;
-        return studentId.equals(other.studentId) &&
-                dateOfMeals.equals(other.dateOfMeals);
-    }
 
     @Override
     public String toString() {
@@ -68,4 +52,12 @@ public class Visit {
         return sb.toString();
     }
 
+    @Data
+    public static class VisitPK implements Serializable {
+        protected Integer studentId;
+        protected LocalDate dateOfMeals;
+    }
+
 }
+
+
