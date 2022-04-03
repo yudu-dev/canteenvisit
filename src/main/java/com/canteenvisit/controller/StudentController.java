@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class StudentController {
     public ResponseEntity<List<Student>> read() {
         final List<Student> students = studentService.findAll();
 
-        return students != null &&  !students.isEmpty()
+        return students != null && !CollectionUtils.isEmpty(students)
                 ? new ResponseEntity<>(students, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
