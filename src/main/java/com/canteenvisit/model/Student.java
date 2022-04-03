@@ -43,10 +43,6 @@ public class Student {
     private int paidMeals;
     @Column(name = "social_help_before")
     private LocalDate socialHelpBefore;
-    @Column(name = "ate_food")
-    private Boolean ateFood;
-    @Column(name = "drank_milk")
-    private boolean drankMilk;
 
     @Override
     public boolean equals(Object obj) {
@@ -82,8 +78,6 @@ public class Student {
         sb.append(", disability='").append(disability).append('\'');
         sb.append(", paid_meals='").append(paidMeals).append('\'');
         sb.append(", social_help_before='").append(socialHelpBefore).append('\'');
-        sb.append(", ate_food='").append(ateFood).append('\'');
-        sb.append(", drank_milk=").append(drankMilk);
         sb.append('}');
         return sb.toString();
     }

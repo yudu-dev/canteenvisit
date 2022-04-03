@@ -9,7 +9,5 @@ CREATE TABLE IF NOT EXISTS students
     limited_health_options boolean NOT NULL,
     disability boolean NOT NULL,
     paid_meals int NOT NULL,
-    social_help_before date NOT NULL,
-    ate_food boolean NOT NULL,
-    drank_milk boolean NOT NULL
+    social_help_before date NOT NULL
 );
