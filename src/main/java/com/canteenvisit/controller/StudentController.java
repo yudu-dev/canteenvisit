@@ -2,7 +2,7 @@ package com.canteenvisit.controller;
 
 import com.canteenvisit.service.StudentService;
 import com.canteenvisit.model.Student;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,14 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
-
-    @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
 
     @PostMapping(value = "/students", produces = "application/json; charset=UTF-8")
     public ResponseEntity<?> create(@RequestBody Student student) {

@@ -2,18 +2,16 @@ package com.canteenvisit.service;
 
 import com.canteenvisit.model.Student;
 import com.canteenvisit.repository.StudentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
-
-    public StudentServiceImpl(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
 
     @Override
     public void create(Student student) {
