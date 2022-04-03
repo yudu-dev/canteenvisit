@@ -3,6 +3,7 @@ package com.canteenvisit.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -11,10 +12,10 @@ import java.time.LocalDate;
 // @Entity указывает, что данный бин (класс) является сущностью
 @Entity
 // @Table указывает на имя таблицы, которая будет отображаться в этой сущности
-@Table(name="students")
+@Table(name="visits")
 // след строка позволяет избавиться от ошибки ленивой инициализации Hibernate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Student {
+public class Visit {
     // @Id id колонки
     @Id
     // @Column указывает на имя колонки, которая отображается в свойство сущности
@@ -22,28 +23,18 @@ public class Student {
     // @GeneratedValue — указывает, что данное свойство будет создаваться согласно указанной стратегии
     // тип стратегии, подходящей для PostgresSQL или Oracle - SEQUENCE
     // тип стратегии, подходящий для MySQL или DB2 - IDENTITY
-    @SequenceGenerator(name = "studentIdSeq", sequenceName = "students_student_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "studentIdSeq", sequenceName = "visits_student_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "studentIdSeq")
     private Integer studentId;
 
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "second_name")
-    private String secondName;
-    @Column(name = "middle_name")
-    private String middleName;
-    @Column(name = "date_of_birth")
-    private LocalDate dateOfBirth;
-    @Column(name = "class_name")
-    private String className;
-    @Column(name = "limited_health_options")
-    private boolean limitedHealthOptions;
-    @Column(name = "disability")
-    private boolean disability;
-    @Column(name = "paid_meals")
-    private int paidMeals;
-    @Column(name = "social_help_before")
-    private LocalDate socialHelpBefore;
+    @Column(name = "date_of_meals")
+    private LocalDate dateOfMeals;
+    @Column(name = "ate_food")
+    private boolean ateFood;
+    @Column(name = "drank_milk")
+    private boolean drankMilk;
+    @Column(name = "last_update")
+    private LocalDate lastUpdate;
 
     @Override
     public boolean equals(Object obj) {
@@ -58,28 +49,23 @@ public class Student {
             return false;
         }
         // сравнивает поля объектов
-        // если два объекта имеют одинаковые значения полей "Имя, Фамилия, Отчество"
+        // если два объекта имеют одинаковые значения полей "ID и дата приема пищи"
         // то объекты совпадают
-        final Student other = (Student) obj;
-        return firstName.equals(other.firstName) &&
-                secondName.equals(other.secondName) &&
-                middleName.equals(other.middleName);
+        final Visit other = (Visit) obj;
+        return studentId.equals(other.studentId) &&
+                dateOfMeals.equals(other.dateOfMeals);
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Student{");
+        final StringBuilder sb = new StringBuilder("Visit{");
         sb.append("student_id=").append(studentId);
-        sb.append(", first_name='").append(firstName).append('\'');
-        sb.append(", second_name='").append(secondName).append('\'');
-        sb.append(", middle_name='").append(middleName).append('\'');
-        sb.append(", date_of_birth='").append(dateOfBirth).append('\'');
-        sb.append(", class_name='").append(className).append('\'');
-        sb.append(", limited_health_options='").append(limitedHealthOptions).append('\'');
-        sb.append(", disability='").append(disability).append('\'');
-        sb.append(", paid_meals='").append(paidMeals).append('\'');
-        sb.append(", social_help_before='").append(socialHelpBefore).append('\'');
+        sb.append(", date_of_meals='").append(dateOfMeals).append('\'');
+        sb.append(", ate_food='").append(ateFood).append('\'');
+        sb.append(", drank_milk='").append(drankMilk).append('\'');
+        sb.append(", last_update='").append(lastUpdate).append('\'');
         sb.append('}');
         return sb.toString();
     }
+
 }
