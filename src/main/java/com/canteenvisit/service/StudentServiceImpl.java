@@ -2,7 +2,6 @@ package com.canteenvisit.service;
 
 import com.canteenvisit.model.Student;
 import com.canteenvisit.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,14 +26,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student read(int student_id) {
-        return studentRepository.getById(student_id);
+    public Student read(int studentId) {
+        return studentRepository.getById(studentId);
     }
 
     @Override
-    public boolean update(Student student, int student_id) {
-        if (studentRepository.existsById(student_id)) {
-            student.setStudent_id(student_id);
+    public boolean update(Student student, int studentId) {
+        if (studentRepository.existsById(studentId)) {
+            student.setStudentId(studentId);
             studentRepository.save(student);
             return true;
         }
@@ -42,9 +41,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public boolean delete(int student_id) {
-        if (studentRepository.existsById(student_id)) {
-            studentRepository.deleteById(student_id);
+    public boolean delete(int studentId) {
+        if (studentRepository.existsById(studentId)) {
+            studentRepository.deleteById(studentId);
             return true;
         }
         return false;

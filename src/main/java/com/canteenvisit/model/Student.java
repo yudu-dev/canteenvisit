@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-// @Entity указывает, что данный бин (класс) является сущностью.
+// @Entity указывает, что данный бин (класс) является сущностью
 @Entity
 // @Table указывает на имя таблицы, которая будет отображаться в этой сущности
 @Table(name="students")
@@ -23,30 +23,30 @@ public class Student {
     // тип стратегии, подходящей для PostgresSQL или Oracle - SEQUENCE
     // тип стратегии, подходящий для MySQL или DB2 - IDENTITY
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer student_id;
+    private Integer studentId;
 
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
     @Column(name = "second_name")
-    private String second_name;
+    private String secondName;
     @Column(name = "middle_name")
-    private String middle_name;
+    private String middleName;
     @Column(name = "date_of_birth")
-    private LocalDate date_of_birth;
+    private LocalDate dateOfBirth;
     @Column(name = "class_name")
-    private String class_name;
+    private String className;
     @Column(name = "limited_health_options")
-    private boolean limited_health_options;
+    private boolean limitedHealthOptions;
     @Column(name = "disability")
     private boolean disability;
     @Column(name = "paid_meals")
-    private int paid_meals;
+    private int paidMeals;
     @Column(name = "social_help_before")
-    private LocalDate social_help_before;
+    private LocalDate socialHelpBefore;
     @Column(name = "ate_food")
-    private Boolean ate_food;
+    private Boolean ateFood;
     @Column(name = "drank_milk")
-    private boolean drank_milk;
+    private boolean drankMilk;
 
     @Override
     public boolean equals(Object obj) {
@@ -64,26 +64,26 @@ public class Student {
         // если два объекта имеют одинаковые значения полей "Имя, Фамилия, Отчество"
         // то объекты совпадают
         final Student other = (Student) obj;
-        return first_name.equals(other.first_name) &&
-                second_name.equals(other.second_name) &&
-                middle_name.equals(other.middle_name);
+        return firstName.equals(other.firstName) &&
+                secondName.equals(other.secondName) &&
+                middleName.equals(other.middleName);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("City{");
-        sb.append("student_id=").append(student_id);
-        sb.append(", first_name='").append(first_name).append('\'');
-        sb.append(", second_name='").append(second_name).append('\'');
-        sb.append(", middle_name='").append(middle_name).append('\'');
-        sb.append(", date_of_birth='").append(date_of_birth).append('\'');
-        sb.append(", class_name='").append(class_name).append('\'');
-        sb.append(", limited_health_options='").append(limited_health_options).append('\'');
+        sb.append("student_id=").append(studentId);
+        sb.append(", first_name='").append(firstName).append('\'');
+        sb.append(", second_name='").append(secondName).append('\'');
+        sb.append(", middle_name='").append(middleName).append('\'');
+        sb.append(", date_of_birth='").append(dateOfBirth).append('\'');
+        sb.append(", class_name='").append(className).append('\'');
+        sb.append(", limited_health_options='").append(limitedHealthOptions).append('\'');
         sb.append(", disability='").append(disability).append('\'');
-        sb.append(", paid_meals='").append(paid_meals).append('\'');
-        sb.append(", social_help_before='").append(social_help_before).append('\'');
-        sb.append(", ate_food='").append(ate_food).append('\'');
-        sb.append(", drank_milk=").append(drank_milk);
+        sb.append(", paid_meals='").append(paidMeals).append('\'');
+        sb.append(", social_help_before='").append(socialHelpBefore).append('\'');
+        sb.append(", ate_food='").append(ateFood).append('\'');
+        sb.append(", drank_milk=").append(drankMilk);
         sb.append('}');
         return sb.toString();
     }
