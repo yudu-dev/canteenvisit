@@ -28,7 +28,7 @@ public class Visit {
     @Id
     @Column(name = "date_of_meals")
     private LocalDate dateOfMeals;
-    @Column(name = "ate_meal")
+    @Column(name = "ate_food")
     private boolean ateMeal;
     @Column(name = "drank_milk")
     private boolean drankMilk;
