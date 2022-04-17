@@ -16,7 +16,7 @@ public class DailyReportService {
     private final DailyReportConverter converter;
 
     public List<DailyReportDto> findByDateAndClass(LocalDate date, String className) {
-        return repository.findByDateAndClass(date, className).stream()
+        return repository.findByDateAndClass(date, className.toLowerCase()).stream()
                 .map(converter::convert)
                 .toList();
     }

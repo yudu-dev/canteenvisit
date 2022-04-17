@@ -14,18 +14,23 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JdbcDailyReportRepository implements DailyReportRepository {
 
-    private static final String FIND_BY_DATE_AND_CLASS = "select\n" +
-            "\tv.*,\n" +
-            "\tss.first_name,\n" +
-            "\tss.last_name,\n" +
-            "\tss.middle_name,\n" +
-            "\tss.date_of_birth\n" +
-            "from\n" +
-            "\tvisits v\n" +
-            "left join students ss on\n" +
-            "\tss.student_id = v.student_id\n" +
-            "where\n" +
-            "\tdate_of_meals = :date";
+    private static final String FIND_BY_DATE_AND_CLASS = "select " +
+            "     s.student_id , " +
+            "     s.first_name, " +
+            "     s.last_name, " +
+            "     s.middle_name, " +
+            "     s.date_of_birth, " +
+            "     coalesce (v.ate_meal,false) as ate_meal, " +
+            "     coalesce (v.drank_milk,false) as drank_milk " +
+            "from " +
+            "     students s " +
+            "left outer join ( " +
+            "     select " +
+            "          * " +
+            "     from visits v " +
+            "     where v.date_of_meals = :date " +
+            ") v on s.student_id = v.student_id " +
+            "where s.class_name = :className ";
 
     private static final BeanPropertyRowMapper<DailyReportRowModel> ROW_MAPPER =
             new BeanPropertyRowMapper<>(DailyReportRowModel.class);
