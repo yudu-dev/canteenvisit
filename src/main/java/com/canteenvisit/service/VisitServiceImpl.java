@@ -5,6 +5,7 @@ import com.canteenvisit.repository.VisitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,6 +37,13 @@ public class VisitServiceImpl implements VisitService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean update(List<Visit> visits) {
+        visits.forEach(v -> v.setLastUpdate(LocalDate.now()));
+        visitRepository.saveAll(visits);
+        return true;
     }
 
     @Override

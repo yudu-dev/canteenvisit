@@ -7,13 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -41,6 +36,15 @@ public class VisitController {
     @PutMapping(value = "/visits/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Visit> read(@PathVariable(name = "id") int id, @RequestBody Visit visit) {
         final boolean updated = visitService.update(visit, id);
+
+        return updated
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
+
+    @PutMapping(value = "/visits", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> read( @RequestBody List<Visit> visit) {
+        final boolean updated = visitService.update(visit);
 
         return updated
                 ? new ResponseEntity<>(HttpStatus.OK)

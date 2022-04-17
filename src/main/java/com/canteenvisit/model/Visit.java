@@ -5,13 +5,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.IdClass;
-import javax.persistence.Id;
-import javax.persistence.Column;
 
 
 @Getter
@@ -32,8 +28,8 @@ public class Visit {
     @Id
     @Column(name = "date_of_meals")
     private LocalDate dateOfMeals;
-    @Column(name = "ate_food")
-    private boolean ateFood;
+    @Column(name = "ate_meal")
+    private boolean ateMeal;
     @Column(name = "drank_milk")
     private boolean drankMilk;
     @Column(name = "last_update")
@@ -45,7 +41,7 @@ public class Visit {
         final StringBuilder sb = new StringBuilder("Visit{");
         sb.append("student_id=").append(studentId);
         sb.append(", date_of_meals='").append(dateOfMeals).append('\'');
-        sb.append(", ate_food='").append(ateFood).append('\'');
+        sb.append(", ate_food='").append(ateMeal).append('\'');
         sb.append(", drank_milk='").append(drankMilk).append('\'');
         sb.append(", last_update='").append(lastUpdate).append('\'');
         sb.append('}');

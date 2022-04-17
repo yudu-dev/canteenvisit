@@ -32,6 +32,7 @@ public interface VisitService {
      */
     boolean update(Visit visit, int id);
 
+    boolean update(List<Visit> visits);
     /**
      * Удаляет объект класса Visit с заданным ID ученика
      * @param id id ученика, объект класса Visit которого нужно удалить
