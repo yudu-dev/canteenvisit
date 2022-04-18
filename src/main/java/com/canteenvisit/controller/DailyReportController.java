@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,11 +22,5 @@ public class DailyReportController {
     @GetMapping(value = "/report", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<DailyReportDto>> read(@RequestParam LocalDate date, @RequestParam String className) {
         return new ResponseEntity<>(service.findByDateAndClass(date, className), HttpStatus.OK);
-    }
-
-    @PutMapping(value = "/report")
-    public ResponseEntity<?> update(@RequestBody List<DailyReportDto> reports) {
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

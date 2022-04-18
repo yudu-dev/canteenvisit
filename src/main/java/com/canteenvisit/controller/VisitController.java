@@ -43,8 +43,8 @@ public class VisitController {
     }
 
     @PutMapping(value = "/visits", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> read( @RequestBody List<Visit> visit) {
-        final boolean updated = visitService.update(visit);
+    public ResponseEntity<?> read( @RequestBody List<Visit> visits) {
+        final boolean updated = visitService.update(visits);
 
         return updated
                 ? new ResponseEntity<>(HttpStatus.OK)
