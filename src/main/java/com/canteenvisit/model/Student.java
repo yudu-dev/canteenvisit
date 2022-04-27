@@ -3,13 +3,14 @@ package com.canteenvisit.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import java.time.LocalDate;
 
 @Getter
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 // @Entity указывает, что данный бин (класс) является сущностью
 @Entity
 // @Table указывает на имя таблицы, которая будет отображаться в этой сущности
-@Table(name="students")
+@Table(name = "students")
 // след строка позволяет избавиться от ошибки ленивой инициализации Hibernate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Student {
@@ -33,8 +34,8 @@ public class Student {
     private Integer studentId;
     @Column(name = "first_name")
     private String firstName;
-    @Column(name = "second_name")
-    private String secondName;
+    @Column(name = "last_name")
+    private String lastName;
     @Column(name = "middle_name")
     private String middleName;
     @Column(name = "date_of_birth")
@@ -56,7 +57,7 @@ public class Student {
         final StringBuilder sb = new StringBuilder("Student{");
         sb.append("student_id=").append(studentId);
         sb.append(", first_name='").append(firstName).append('\'');
-        sb.append(", second_name='").append(secondName).append('\'');
+        sb.append(", second_name='").append(lastName).append('\'');
         sb.append(", middle_name='").append(middleName).append('\'');
         sb.append(", date_of_birth='").append(dateOfBirth).append('\'');
         sb.append(", class_name='").append(className).append('\'');
