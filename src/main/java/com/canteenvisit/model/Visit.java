@@ -5,7 +5,11 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -15,7 +19,7 @@ import java.time.LocalDate;
 // @Entity указывает, что данный бин (класс) является сущностью
 @Entity
 // @Table указывает на имя таблицы, которая будет отображаться в этой сущности
-@Table(name="visits")
+@Table(name = "visits")
 // след строка позволяет избавиться от ошибки ленивой инициализации Hibernate
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @IdClass(Visit.VisitPK.class)
